@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hawkon · Personal Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --af50:#EAF1F6;--af100:#C9DCE8;--af200:#9FBFD3;--af300:#6E9BB8;--af400:#41759A;--af500:#1B4965;--af600:#163C54;--af700:#112F43;--af800:#0C2232;--af900:#071521;
+  --sky300:#7FC1E2;--sky400:#5FA8D3;--sky500:#3D8FC4;--sky600:#2E73A3;
+  --n0:#FFFFFF;--n50:#F6F8FA;--n100:#ECEFF3;--n200:#DCE3EA;--n300:#C2CCD6;--n400:#97A3B0;--n500:#6B7886;--n600:#4E5A67;--n700:#38424D;--n800:#232B33;--n900:#141A20;--n1000:#0A0E12;
+  --ok:#2E9E6B;--warn:#E0A100;--err:#D64545;--ember:#E07A3F;--ember300:#EFB084;
+  --rsm:6px;--rmd:10px;--rlg:16px;--rxl:24px;--rfull:999px;
+  --fl:"Inter",system-ui,sans-serif;--fcn:"Noto Sans SC","PingFang SC",sans-serif;--fserif:"Noto Serif SC",serif;--fmono:"JetBrains Mono",monospace;
+  --e2:0 1px 1.5px rgba(16,24,40,.04),0 8px 18px -10px rgba(16,24,40,.10);
+  --e3:0 1px 2px rgba(16,24,40,.05),0 16px 34px -14px rgba(16,24,40,.16);
+  --bg:var(--n50);--surface:var(--n0);--subtle:var(--n100);
+  --text:var(--n900);--text2:var(--n600);--text3:var(--n500);--onacc:#fff;
+  --border:var(--n200);--borderS:var(--n300);
+  --acc:var(--af500);--accH:var(--af600);--acc2:var(--sky500);--subAcc:var(--af50);
+  --grad-a:#0C2232;--grad-b:#163C54;--grain:.05;
+}
+[data-theme="dark"]{
+  --bg:var(--n1000);--surface:var(--n900);--subtle:var(--n800);
+  --text:var(--n100);--text2:var(--n300);--text3:var(--n400);--onacc:var(--af900);
+  --border:var(--n700);--borderS:var(--n600);
+  --acc:var(--sky400);--accH:var(--sky300);--acc2:var(--sky400);--subAcc:var(--af800);
+  --grad-a:#050C14;--grad-b:#0A1A26;--grain:.08;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fcn);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .4s,color .4s;overflow-x:hidden}
+/* film grain overlay */
+.grain{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:var(--grain);mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--fmono)}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(14px);background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid var(--border)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:62px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--fl);font-weight:600;letter-spacing:-.01em}
+.mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(150deg,var(--af400),var(--af600));color:#fff;display:grid;place-items:center;font-family:var(--fl);font-weight:800;font-size:18px;box-shadow:var(--e2)}
+.navlinks{display:flex;gap:26px;font-family:var(--fmono);font-size:12px;color:var(--text3)}
+.navlinks a{color:inherit;text-decoration:none;transition:.2s}.navlinks a:hover{color:var(--acc)}
+.toggle{cursor:pointer;border:1px solid var(--borderS);background:var(--surface);color:var(--text2);border-radius:var(--rfull);width:36px;height:36px;font-size:15px;transition:.2s}
+.toggle:hover{border-color:var(--acc);color:var(--acc)}
+@media(max-width:680px){.navlinks{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#F6F8FA;border-radius:var(--rxl);margin-top:30px;padding:clamp(40px,6vw,72px) clamp(28px,5vw,60px);background:linear-gradient(140deg,var(--grad-a),var(--grad-b));isolation:isolate}
+.aurora{position:absolute;border-radius:50%;filter:blur(60px);z-index:-1;pointer-events:none}
+.aurora.a{width:420px;height:420px;right:-80px;top:-120px;background:radial-gradient(circle,rgba(95,168,211,.5),transparent 62%);animation:float1 14s ease-in-out infinite}
+.aurora.b{width:340px;height:340px;left:-90px;bottom:-140px;background:radial-gradient(circle,rgba(65,117,154,.45),transparent 60%);animation:float2 18s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(-26px,22px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(24px,-18px)}}
+.coord{position:absolute;top:clamp(24px,4vw,40px);right:clamp(24px,4vw,40px);font-family:var(--fmono);font-size:11px;color:var(--af200);text-align:right;line-height:1.8;letter-spacing:.04em}
+.avail{display:inline-flex;align-items:center;gap:7px;font-family:var(--fmono);font-size:11px;color:var(--af100);letter-spacing:.1em;text-transform:uppercase}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--ember);box-shadow:0 0 0 0 rgba(224,122,63,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,122,63,.55)}70%{box-shadow:0 0 0 9px rgba(224,122,63,0)}100%{box-shadow:0 0 0 0 rgba(224,122,63,0)}}
+.hero h1{font-family:var(--fl);font-weight:800;font-size:clamp(54px,11vw,108px);letter-spacing:-.035em;line-height:.92;margin:18px 0 4px}
+.hero h1 em{font-family:var(--fserif);font-weight:600;font-style:italic;letter-spacing:-.01em;color:var(--sky400);font-size:.82em}
+.role{font-family:var(--fmono);color:var(--sky400);letter-spacing:.06em;font-size:13px;text-transform:uppercase}
+.tag{color:var(--af100);font-weight:500;font-size:clamp(17px,2.4vw,21px);margin-top:22px}
+.desc{color:var(--af200);font-family:var(--fl);font-size:15px;max-width:540px;margin-top:10px}
+.cta{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+.btn{font-family:var(--fcn);font-weight:500;border-radius:var(--rmd);padding:12px 22px;font-size:14px;cursor:pointer;border:1px solid transparent;transition:.22s;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn .ar{transition:transform .22s}.btn:hover .ar{transform:translateX(4px)}
+.btn-primary{background:#fff;color:var(--af700)}.btn-primary:hover{background:var(--sky400);color:var(--af900)}
+.btn-ghost{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28);color:#EAF1F6;backdrop-filter:blur(4px)}
+.btn-ghost:hover{border-color:var(--sky400);color:#fff}
+.btn-sec{background:var(--surface);border-color:var(--borderS);color:var(--text)}.btn-sec:hover{border-color:var(--acc);color:var(--acc)}
+
+/* section */
+section{padding:clamp(48px,8vw,84px) 0 0}
+.s-head{display:flex;align-items:flex-end;gap:18px;margin-bottom:30px}
+.idx{font-family:var(--fmono);font-size:clamp(38px,6vw,60px);font-weight:500;line-height:.8;color:transparent;-webkit-text-stroke:1.2px var(--borderS);letter-spacing:-.02em}
+.s-head .meta{display:flex;flex-direction:column;gap:3px;padding-bottom:4px}
+.s-head .meta .en{font-family:var(--fmono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc2)}
+.s-head .meta h2{font-family:var(--fcn);font-weight:700;font-size:clamp(20px,3vw,26px)}
+.s-head .rule{flex:1;height:1px;background:var(--border);margin-bottom:12px}
+
+/* bento work */
+.bento{display:grid;grid-template-columns:1.4fr 1fr;grid-auto-rows:1fr;gap:16px}
+.card{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--border);border-radius:var(--rlg);padding:24px;box-shadow:var(--e2);transition:box-shadow .35s,border-color .35s,transform .35s;--mx:50%;--my:50%}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(360px circle at var(--mx) var(--my),color-mix(in srgb,var(--acc) 13%,transparent),transparent 62%);opacity:0;transition:opacity .35s;pointer-events:none}
+.card:hover{box-shadow:var(--e3);border-color:var(--sky300)}
+.card:hover::before{opacity:1}
+.card>*{position:relative}
+.card.feat{grid-row:span 2;display:flex;flex-direction:column}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h3{font-family:var(--fcn);font-weight:700;font-size:clamp(17px,2.2vw,21px)}
+.card .badge{font-family:var(--fmono);font-size:10.5px;color:var(--acc2);white-space:nowrap;text-align:right}
+.card .stack{font-family:var(--fmono);font-size:11px;color:var(--text3);margin:10px 0 14px;letter-spacing:.02em}
+.card p{font-size:13.5px;color:var(--text2)}
+.card.feat p{font-size:14.5px}
+.card .spacer{flex:1}
+.card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-family:var(--fmono);padding:4px 10px;border-radius:var(--rfull);background:color-mix(in srgb,var(--ok) 13%,transparent);color:var(--ok)}
+.pill.dot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.go{font-family:var(--fmono);font-size:18px;color:var(--text3);transition:.25s}
+.card:hover .go{color:var(--acc);transform:translate(3px,-3px)}
+
+/* skills marquee */
+.marquee{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.track{display:flex;gap:10px;width:max-content;animation:scroll 34s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.chip{flex:none;background:var(--subAcc);color:var(--acc);border-radius:var(--rfull);padding:8px 16px;font-size:13px;font-family:var(--fl);font-weight:500;border:1px solid color-mix(in srgb,var(--acc) 16%,transparent)}
+
+/* system showcase */
+.showcase{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--rlg);padding:24px}
+.panel h4{font-family:var(--fmono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px}
+.swatches{display:flex;flex-wrap:wrap;gap:7px}
+.sw{width:52px;text-align:center;font-family:var(--fmono);font-size:9px;color:var(--text3)}
+.sw i{display:block;height:42px;border-radius:8px;border:1px solid var(--border);margin-bottom:4px}
+.type-row{display:flex;align-items:baseline;gap:12px;padding:8px 0;border-bottom:1px dashed var(--border)}
+.type-row:last-child{border:0}
+.type-row .lab{font-family:var(--fmono);font-size:10px;color:var(--text3);width:76px;flex:none}
+
+footer{padding:60px 0;color:var(--text3);font-family:var(--fmono);font-size:12px;text-align:center}
+footer .big{font-family:var(--fl);font-weight:800;font-size:clamp(40px,9vw,96px);letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1px var(--borderS);margin-bottom:20px;line-height:1}
+@media(max-width:760px){.bento,.showcase{grid-template-columns:1fr}.card.feat{grid-row:auto}.coord{display:none}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<nav><div class="wrap nav-in">
+  <div class="brand"><div class="mark">H</div><span>Hawkon</span></div>
+  <div class="navlinks"><a href="#work">/ work</a><a href="#skills">/ skills</a><a href="#system">/ system</a></div>
+  <button class="toggle" id="tg" title="切换明暗">◐</button>
+</div></nav>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="aurora a"></div><div class="aurora b"></div>
+    <div class="coord">N 39.92° · E 116.39°<br>BEIJING · CUC<br><span class="avail"><span class="pulse"></span>Open to work</span></div>
+    <div class="role">// iOS · Apple Client · AI Agent Engineer</div>
+    <h1>Haw<em>kon</em></h1>
+    <div class="tag">工程师的理性 · 设计师的审美</div>
+    <p class="desc">An engineer's logic, a designer's eye — one consistent voice across résumé, web, slides, docs and product.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#">查看简历 <span class="ar">→</span></a>
+      <a class="btn btn-ghost" href="#work">作品集</a>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="s-head"><div class="idx">01</div><div class="meta"><span class="en">Selected Work</span><h2>项目经历</h2></div><div class="rule"></div></div>
+    <div class="bento">
+      <div class="card feat" data-spot>
+        <div class="top"><h3>彩宝儿 CaiBaoEr</h3><span class="badge">独立开发<br>macOS App Store</span></div>
+        <div class="stack">Swift · SwiftUI · 通义千问 Agent · K-Means · Vue/Node</div>
+        <p>AI 驱动的跨平台色彩辅助设计工具。覆盖原型 → UI → 客户端 → 官网 → 上架全流程，自研三智能体配色生成 + 经典色彩算法 + 多色域（P3/CMYK）安全检查，跑通订阅 & 内购付费闭环。</p>
+        <div class="spacer"></div>
+        <div class="foot"><span class="pill dot">Shipped · 付费用户</span><span class="go">↗</span></div>
+      </div>
+      <div class="card" data-spot>
+        <div class="top"><h3>视听节目对话推荐系统</h3><span class="badge">软著<br>2026SR0256933</span></div>
+        <div class="stack">Django · Vue3 · MySQL · LLM</div>
+        <p>基于大模型的多轮对话式推荐，动态挖掘用户长短期偏好。</p>
+        <div class="foot"><span class="pill dot">核心开发者</span><span class="go">↗</span></div>
+      </div>
+      <div class="card" data-spot>
+        <div class="top"><h3>多智能体推荐系统</h3><span class="badge">论文在投<br>Under Review</span></div>
+        <div class="stack">Multi-Agent · Mental-State Modeling</div>
+        <p>《Unified User Mental-State Modeling for Agentic Conversational Recommendation》。</p>
+        <div class="foot"><span class="pill dot" style="background:color-mix(in srgb,var(--ember) 15%,transparent);color:var(--ember)">Research</span><span class="go">↗</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="s-head"><div class="idx">02</div><div class="meta"><span class="en">Capabilities</span><h2>专业技能</h2></div><div class="rule"></div></div>
+    <div class="marquee"><div class="track" id="track">
+      <span class="chip">Swift / SwiftUI</span><span class="chip">ARKit</span><span class="chip">Python</span><span class="chip">Django</span><span class="chip">Vue.js</span><span class="chip">Node.js</span><span class="chip">LLM / Agent</span><span class="chip">NLP</span><span class="chip">推荐算法</span><span class="chip">色域工程 P3/CMYK</span><span class="chip">K-Means</span><span class="chip">Claude Code / Codex</span>
+    </div></div>
+  </section>
+
+  <section id="system">
+    <div class="s-head"><div class="idx">03</div><div class="meta"><span class="en">The System Itself</span><h2>设计系统</h2></div><div class="rule"></div></div>
+    <div class="showcase">
+      <div class="panel">
+        <h4>Color · Airforce / Sky</h4>
+        <div class="swatches">
+          <div class="sw"><i style="background:#1B4965"></i>af500</div><div class="sw"><i style="background:#41759A"></i>af400</div><div class="sw"><i style="background:#6E9BB8"></i>af300</div><div class="sw"><i style="background:#5FA8D3"></i>sky4</div><div class="sw"><i style="background:#3D8FC4"></i>sky5</div>
+        </div>
+        <div class="swatches" style="margin-top:12px">
+          <div class="sw"><i style="background:#2E9E6B"></i>ok</div><div class="sw"><i style="background:#E0A100"></i>warn</div><div class="sw"><i style="background:#D64545"></i>err</div><div class="sw"><i style="background:#E07A3F"></i>ember</div><div class="sw"><i style="background:#141A20"></i>n900</div>
+        </div>
+      </div>
+      <div class="panel">
+        <h4>Type · Inter + 思源黑/宋</h4>
+        <div class="type-row"><span class="lab">Display</span><span style="font-family:var(--fl);font-weight:800;font-size:26px;letter-spacing:-.03em">Hawkon</span></div>
+        <div class="type-row"><span class="lab">Serif</span><span style="font-family:var(--fserif);font-style:italic;font-weight:600;font-size:22px;color:var(--acc2)">kon</span></div>
+        <div class="type-row"><span class="lab">标题</span><span style="font-weight:700;font-size:19px">视听推荐系统</span></div>
+        <div class="type-row"><span class="lab">正文</span><span style="font-size:14px;color:var(--text2)">工程师的理性，设计师的审美。</span></div>
+        <div class="type-row"><span class="lab">Mono</span><span class="mono" style="font-size:13px;color:var(--acc2)">--hk-accent-primary</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="big">Let's build.</div>
+    Hawkon Personal Design System · v1.0 · 本页 100% 由系统 tokens 渲染 · 右上角切换明 / 暗
+  </footer>
+</div>
+
+<script>
+const tg=document.getElementById('tg'),html=document.documentElement;
+tg.addEventListener('click',()=>{const d=html.getAttribute('data-theme')==='dark';html.setAttribute('data-theme',d?'light':'dark');tg.textContent=d?'◐':'◑';});
+// spotlight follow
+document.querySelectorAll('[data-spot]').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+});
+// duplicate marquee for seamless loop
+const t=document.getElementById('track');t.innerHTML+=t.innerHTML;
+</script>
+</body>
+</html>

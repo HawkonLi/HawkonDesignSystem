@@ -14,7 +14,9 @@ Design principle: **an engineer's logic, a designer's eye**（工程师的理性
 | `tokens.json` | W3C design-tokens source of truth (primitives + semantic light/dark + scale) |
 | `css/tokens.css` | CSS custom properties; dark via `[data-theme="dark"]` or OS preference |
 | `tailwind.preset.js` | Tailwind preset (colors, spacing, radius, shadows, fonts) |
-| `swift/HawkonTokens.swift` | SwiftUI tokens with auto light/dark semantic colors |
+| `swift/HawkonTokens.swift` | SwiftUI tokens — colors (auto light/dark), motion, gradients |
+| `STYLE-RECIPES.md` | The "modern moves": grain, aurora glow, spotlight cards, editorial index, serif accent, marquee, live dot |
+| `demo/index.html` | Live, self-contained demo of the whole system (light/dark toggle) |
 
 ## Quick start
 **Web (CSS):** import `css/tokens.css`, then use `var(--hk-accent-primary)`, `var(--hk-bg-surface)`, etc. Toggle dark by setting `document.documentElement.dataset.theme = 'dark'`.

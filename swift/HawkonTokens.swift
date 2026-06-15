@@ -66,3 +66,19 @@ public enum HKTheme {
 
 public enum HKSpace { public static let s0:CGFloat=0, s1=4, s2=8, s3=12, s4=16, s5=24, s6=32, s7=48, s8=64, s9=96 }
 public enum HKRadius { public static let sm:CGFloat=6, md=10, lg=16, xl=24, full=999 }
+
+/// Motion tokens. Use HKMotion.easeOut(_:) for standard transitions.
+public enum HKMotion {
+    public static let durFast: Double = 0.15
+    public static let durBase: Double = 0.22
+    public static let durSlow: Double = 0.35
+    public static func easeOut(_ d: Double = durBase) -> Animation { .timingCurve(0.4, 0, 0.2, 1, duration: d) }
+    public static func spring() -> Animation { .interpolatingSpring(stiffness: 220, damping: 22) }
+}
+
+/// Brand gradients (use as fills/backgrounds).
+public enum HKGradient {
+    public static let hero = LinearGradient(colors: [Color(hex:"0C2232"), Color(hex:"163C54")], startPoint: .topLeading, endPoint: .bottomTrailing)
+    public static let mark = LinearGradient(colors: [Color(hex:"41759A"), Color(hex:"163C54")], startPoint: .topLeading, endPoint: .bottomTrailing)
+    public static let text = LinearGradient(colors: [Color(hex:"1B4965"), Color(hex:"5FA8D3")], startPoint: .leading, endPoint: .trailing)
+}
