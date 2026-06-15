@@ -1,0 +1,112 @@
+/* Hawkon Personal Design System — CSS custom properties
+   Light is default; add data-theme="dark" on <html> (or any ancestor) for dark mode.
+   Engineer's logic, designer's eye. Primary: Airforce Blue · Accent: Sky Blue. */
+
+:root {
+  /* ---- Primitives ---- */
+  --hk-airforce-50:#EAF1F6; --hk-airforce-100:#C9DCE8; --hk-airforce-200:#9FBFD3;
+  --hk-airforce-300:#6E9BB8; --hk-airforce-400:#41759A; --hk-airforce-500:#1B4965;
+  --hk-airforce-600:#163C54; --hk-airforce-700:#112F43; --hk-airforce-800:#0C2232; --hk-airforce-900:#071521;
+
+  --hk-sky-50:#EEF7FC; --hk-sky-100:#D2EAF6; --hk-sky-200:#A9D6EC; --hk-sky-300:#7FC1E2;
+  --hk-sky-400:#5FA8D3; --hk-sky-500:#3D8FC4; --hk-sky-600:#2E73A3; --hk-sky-700:#245A80;
+  --hk-sky-800:#1A4260; --hk-sky-900:#102B40;
+
+  --hk-neutral-0:#FFFFFF; --hk-neutral-50:#F6F8FA; --hk-neutral-100:#ECEFF3; --hk-neutral-200:#DCE3EA;
+  --hk-neutral-300:#C2CCD6; --hk-neutral-400:#97A3B0; --hk-neutral-500:#6B7886; --hk-neutral-600:#4E5A67;
+  --hk-neutral-700:#38424D; --hk-neutral-800:#232B33; --hk-neutral-900:#141A20; --hk-neutral-1000:#0A0E12;
+
+  --hk-success-50:#E8F5EE; --hk-success-300:#79C9A2; --hk-success-500:#2E9E6B; --hk-success-700:#1E6B48;
+  --hk-warning-50:#FCF3DF; --hk-warning-300:#F0CB66; --hk-warning-500:#E0A100; --hk-warning-700:#9A6F00;
+  --hk-error-50:#FBEAEA;   --hk-error-300:#E88B8B;   --hk-error-500:#D64545;   --hk-error-700:#932929;
+  --hk-ember-50:#FBEFE6;   --hk-ember-300:#EFB084;   --hk-ember-500:#E07A3F;   --hk-ember-700:#A8501F;
+
+  /* ---- Scale ---- */
+  --hk-space-0:0px; --hk-space-1:4px; --hk-space-2:8px; --hk-space-3:12px; --hk-space-4:16px;
+  --hk-space-5:24px; --hk-space-6:32px; --hk-space-7:48px; --hk-space-8:64px; --hk-space-9:96px;
+  --hk-radius-sm:6px; --hk-radius-md:10px; --hk-radius-lg:16px; --hk-radius-xl:24px; --hk-radius-full:999px;
+
+  /* ---- Type ---- */
+  --hk-font-latin: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hk-font-cn: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --hk-font-serif: "Noto Serif SC", "Source Han Serif SC", serif;
+  --hk-font-mono: "JetBrains Mono", "Roboto Mono", ui-monospace, monospace;
+
+  /* ---- Elevation (light) ---- */
+  --hk-elevation-1: 0 1px 2px rgba(18,31,48,.06), 0 1px 3px rgba(18,31,48,.10);
+  --hk-elevation-2: 0 1px 2px rgba(18,31,48,.06), 0 2px 6px rgba(18,31,48,.08);
+  --hk-elevation-3: 0 2px 6px rgba(18,31,48,.08), 0 8px 24px rgba(18,31,48,.12);
+  --hk-elevation-4: 0 4px 12px rgba(18,31,48,.10), 0 16px 40px rgba(18,31,48,.18);
+
+  /* ---- Semantic (Light) ---- */
+  --hk-bg-canvas: var(--hk-neutral-50);
+  --hk-bg-surface: var(--hk-neutral-0);
+  --hk-bg-surface-raised: var(--hk-neutral-0);
+  --hk-bg-subtle: var(--hk-neutral-100);
+  --hk-bg-inverse: var(--hk-neutral-900);
+  --hk-text-primary: var(--hk-neutral-900);
+  --hk-text-secondary: var(--hk-neutral-600);
+  --hk-text-tertiary: var(--hk-neutral-500);
+  --hk-text-on-accent: var(--hk-neutral-0);
+  --hk-border-default: var(--hk-neutral-200);
+  --hk-border-strong: var(--hk-neutral-300);
+  --hk-accent-primary: var(--hk-airforce-500);
+  --hk-accent-primary-hover: var(--hk-airforce-600);
+  --hk-accent-secondary: var(--hk-sky-500);
+  --hk-accent-subtle-bg: var(--hk-airforce-50);
+  --hk-accent-ember: var(--hk-ember-500);
+  --hk-focus-ring: var(--hk-sky-400);
+  --hk-status-success: var(--hk-success-500);
+  --hk-status-warning: var(--hk-warning-500);
+  --hk-status-error: var(--hk-error-500);
+  --hk-status-info: var(--hk-sky-500);
+}
+
+/* ---- Semantic (Dark) ---- */
+[data-theme="dark"] {
+  --hk-bg-canvas: var(--hk-neutral-1000);
+  --hk-bg-surface: var(--hk-neutral-900);
+  --hk-bg-surface-raised: var(--hk-neutral-800);
+  --hk-bg-subtle: var(--hk-neutral-800);
+  --hk-bg-inverse: var(--hk-neutral-0);
+  --hk-text-primary: var(--hk-neutral-100);
+  --hk-text-secondary: var(--hk-neutral-300);
+  --hk-text-tertiary: var(--hk-neutral-400);
+  --hk-text-on-accent: var(--hk-airforce-900);
+  --hk-border-default: var(--hk-neutral-700);
+  --hk-border-strong: var(--hk-neutral-600);
+  --hk-accent-primary: var(--hk-sky-400);
+  --hk-accent-primary-hover: var(--hk-sky-300);
+  --hk-accent-secondary: var(--hk-sky-400);
+  --hk-accent-subtle-bg: var(--hk-airforce-800);
+  --hk-accent-ember: var(--hk-ember-300);
+  --hk-focus-ring: var(--hk-sky-400);
+  --hk-status-success: var(--hk-success-300);
+  --hk-status-warning: var(--hk-warning-300);
+  --hk-status-error: var(--hk-error-300);
+  --hk-status-info: var(--hk-sky-300);
+}
+
+/* Optional: follow OS preference automatically */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --hk-bg-canvas: var(--hk-neutral-1000);
+    --hk-bg-surface: var(--hk-neutral-900);
+    --hk-bg-surface-raised: var(--hk-neutral-800);
+    --hk-bg-subtle: var(--hk-neutral-800);
+    --hk-text-primary: var(--hk-neutral-100);
+    --hk-text-secondary: var(--hk-neutral-300);
+    --hk-text-tertiary: var(--hk-neutral-400);
+    --hk-text-on-accent: var(--hk-airforce-900);
+    --hk-border-default: var(--hk-neutral-700);
+    --hk-border-strong: var(--hk-neutral-600);
+    --hk-accent-primary: var(--hk-sky-400);
+    --hk-accent-primary-hover: var(--hk-sky-300);
+    --hk-accent-secondary: var(--hk-sky-400);
+    --hk-accent-subtle-bg: var(--hk-airforce-800);
+    --hk-status-success: var(--hk-success-300);
+    --hk-status-warning: var(--hk-warning-300);
+    --hk-status-error: var(--hk-error-300);
+    --hk-status-info: var(--hk-sky-300);
+  }
+}
